@@ -12,7 +12,7 @@
 ### Project 1. Polynomial Regression and Regularization Analysis
 **(Bias–Variance Trade-off, Overfitting, L1/L2 Regularization)**
 
-- Synthetic data \(y = \sin(2\pi x)\)를 대상으로 다항 회귀 수행
+- Synthetic data $$y = \sin(2\pi x)$$를 대상으로 다항 회귀 수행
 - Polynomial degree 변화에 따른 overfitting 분석
 - Outlier 추가 실험
 - **Ridge(L2)** / **Lasso(L1)** 정규화 비교
