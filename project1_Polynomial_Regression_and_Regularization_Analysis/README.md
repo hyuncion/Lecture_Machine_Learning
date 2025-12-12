@@ -1,106 +1,109 @@
 # Project 1: Polynomial Regression and Regularization Analysis
 
-This project is the first assignment of the **Introduction to Machine Learning** course.  
-The goal is to understand **polynomial regression**, **overfitting**, and the **bias–variance trade-off** through controlled experiments on synthetic data, and to analyze how **regularization** and **training data size** affect model behavior.
+본 프로젝트는 **기계학습개론(Introduction to Machine Learning)** 수업의 첫 번째 과제로,  
+**Polynomial Regression**을 중심으로 **overfitting**, **bias–variance trade-off**, 그리고  
+**regularization (L1 / L2)** 및 **training data size**가 모델의 일반화 성능에 미치는 영향을 실험적으로 분석하는 것을 목표로 합니다.
 
 ---
 
-## Overview
+## Project Overview
 
-We model a target function  
-\[
-y = \sin(2\pi x)
-\]
-using polynomial regression under different conditions.  
-By progressively increasing model complexity, adding outliers, applying regularization, and increasing the number of training samples, we empirically study fundamental machine learning concepts.
+타겟 함수  
+
+$$ y = \sin(2\pi x) $$
+
+를 근사하는 regression model을 구성하고, 모델의 **complexity**를 점진적으로 증가시키며 학습 결과를 비교합니다.  
+또한 **outlier 추가**, **regularization 적용**, **training sample 증가**를 통해 모델의 거동 변화를 관찰합니다.
 
 ---
 
 ## Experiments
 
 ### 1. Noisy Data Generation
-- Generate **10 samples** uniformly in \([0,1]\)
-- Add Gaussian noise to the target function
-- Visualize sampled points and the true function
+- Uniform distribution \([0,1]\)에서 **10 samples** 생성
+- Gaussian noise 추가
+- Ground truth function과 sampled data 시각화
 
-**Purpose:**  
-Understand the effect of noise and limited data on regression.
+**Goal:**  
+적은 데이터와 noise가 regression model에 미치는 영향 이해
 
 ---
 
 ### 2. Polynomial Regression with Increasing Degree
 - Polynomial degrees: **1, 3, 5, 9, 15**
-- Train models using ordinary least squares
-- Visualize fitted curves
+- Ordinary Least Squares 기반 regression 수행
+- 각 degree별 prediction curve 비교
 
-**Observation:**
-- Higher-degree polynomials fit training data more closely
-- Severe **overfitting** appears for large degrees
+**Observation**
+- Degree 증가에 따라 model complexity 증가
+- High-degree polynomial에서 명확한 overfitting 발생
 
 ---
 
 ### 3. Effect of Outliers
-- Add **2–3 artificial outliers**
-- Re-train polynomial regression models
+- Target function을 따르지 않는 **2–3 outliers** 추가
+- 동일한 polynomial regression 실험 반복
 
-**Observation:**
-- Outliers significantly distort high-degree models
-- Overfitting becomes more severe with noisy and corrupted data
+**Observation**
+- Outliers로 인해 model이 ground truth에서 크게 벗어남
+- High-degree model일수록 overfitting이 더욱 심화됨
 
 ---
 
 ### 4. Regularization: Ridge vs. Lasso
-- Apply **Ridge (L2)** and **Lasso (L1)** regression
-- Polynomial degrees: **9, 15**
-- Vary regularization strength \(\alpha\)
+- **Ridge Regression (L2 regularization)**
+- **Lasso Regression (L1 regularization)**
+- Polynomial degree: **9, 15**
+- Regularization strength \(\alpha\) 변화
 
-**Key comparisons:**
-- **Ridge (L2):** Smoothly suppresses large weights
-- **Lasso (L1):** Can drive some coefficients to zero (feature selection)
-- Excessive regularization leads to underfitting
+**Comparison**
+- **L2:** 전체 weight를 부드럽게 shrink
+- **L1:** 일부 weight를 0으로 만들어 feature selection 효과
+- 과도한 regularization은 underfitting 유발
 
 ---
 
-### 5. Increasing Training Data Size
-- Increase samples from **10 → 100**
-- Repeat polynomial regression experiments
+### 5. Effect of Training Data Size
+- Training samples: **10 → 100**
+- 동일한 polynomial regression 실험 수행
 
-**Observation:**
-- More data significantly reduces overfitting
-- High-degree models generalize better with sufficient samples
-- Demonstrates the importance of training data size
+**Observation**
+- Sample 수 증가로 overfitting 완화
+- High-degree model도 비교적 안정적으로 generalize
+- Training data size의 중요성 확인
 
 ---
 
 ## Implementation Details
 
 - **Language:** Python
-- **Libraries:**
+- **Libraries**
   - NumPy
   - Matplotlib
-  - scikit-learn (`LinearRegression`, `Ridge`, `Lasso`, `PolynomialFeatures`)
-- Random seed fixed for reproducibility
-- A single `main.py` file is used to execute each experiment independently
+  - scikit-learn  
+    (`PolynomialFeatures`, `LinearRegression`, `Ridge`, `Lasso`)
+- Reproducibility를 위해 random seed 고정
+- `main.py`에서 각 experiment를 함수 단위로 실행
 
 ---
 
 ## Key Learning Outcomes
 
-- Practical understanding of **bias–variance trade-off**
-- How polynomial degree affects model complexity
-- Sensitivity of regression models to **outliers**
-- Role of **L1 vs. L2 regularization**
-- Importance of **training data size** in generalization
-- Empirical intuition behind overfitting and underfitting
+- Polynomial degree와 model complexity의 관계
+- Bias–variance trade-off에 대한 직관적 이해
+- Outlier가 regression model에 미치는 영향
+- L1 vs. L2 regularization의 차이점
+- Training data size와 generalization 성능의 관계
+- Visualization을 통한 model behavior 분석 능력
 
 ---
 
 ## Notes
 
-- This project uses **synthetic data** for controlled analysis
-- Implemented for **educational purposes**
-- Visualizations are essential for interpreting model behavior
+- 본 프로젝트는 **educational purpose**로 구현되었습니다.
+- Synthetic dataset을 사용하여 개념 분석에 집중하였습니다.
 
 ---
 
-This project builds a strong foundation for understanding supervised learning models and prepares for more complex algorithms studied in later projects.
+본 프로젝트는 이후 지도학습 모델과 정규화 기법을 이해하기 위한 기초 실험으로,  
+machine learning 전반의 핵심 개념을 체계적으로 학습하는 데 목적이 있습니다.
